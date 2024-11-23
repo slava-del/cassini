@@ -8,11 +8,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 # copernicus User email 
-COPERNICUS_USER = os.getenv("COPERNICUS_USER")
+copernicus_user = os.getenv("copernicus_user")
 # copernicus User Password
-COPERNICUS_PASSWORD = os.getenv("COPERNICUS_PASSWORD") 
+copernicus_password = os.getenv("copernicus_password") 
 # WKT Representation of BBOX of AOI
-ft = "POLYGON ((24.075497416281735 45.802249175157954, 24.075497416281735 45.77633573479926, 24.12159609724219 45.77633573479926, 24.12159609724219 45.802249175157954, 24.075497416281735 45.802249175157954))" 
+ft = "POLYGON ((22.466287332337345 47.023435195043646, 22.466287332337345 44.67755354653033, 26.256055635674613 44.67755354653033, 26.256055635674613 47.023435195043646, 22.466287332337345 47.023435195043646))" 
 # Sentinel satellite that you are interested in 
 data_collection = "SENTINEL-2"
 
@@ -20,7 +20,7 @@ data_collection = "SENTINEL-2"
 
 today =  date.today()
 today_string = today.strftime("%Y-%m-%d")
-yesterday = today - timedelta(days=10)
+yesterday = today - timedelta(days=1)
 yesterday_string = yesterday.strftime("%Y-%m-%d")
 
 def get_keycloak(username: str, password: str) -> str:
@@ -65,7 +65,7 @@ if p.shape[0] > 0 : # If we get data back
                 # Create requests session 
                 session = requests.Session()
                 # Get access token based on username and password
-                keycloak_token = get_keycloak(COPERNICUS_USER,COPERNICUS_PASSWORD)
+                keycloak_token = get_keycloak(copernicus_user,copernicus_password)
                 
                 session.headers.update({"Authorization": f"Bearer {keycloak_token}"})
                 url = f"https://catalogue.dataspace.copernicus.eu/odata/v1/Products({feat['properties']['Id']})/$value"
@@ -86,6 +86,3 @@ if p.shape[0] > 0 : # If we get data back
                 print("problem with server")
 else : # If no tiles found for given date range and AOI
     print('no data found')
-
-
-
