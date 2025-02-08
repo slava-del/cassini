@@ -54,9 +54,9 @@ def send_help(message):
     """
     help_message = (
         "Here are some commands you can use:\n"
-        "/weather - Get weather information\n"
-        "/air_quality - Get air quality index\n"
-        "/weather_map - Get weather maps\n"
+        "weather - Get weather information\n"
+        "air_quality - Get air quality index\n"
+        "weather_map - Get weather maps\n"
         "Simply type a location after choosing an option.\n"
         "Enjoy using the bot!"
     )
