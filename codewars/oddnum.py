@@ -24,3 +24,4 @@ def find_odd_number(arr):
     for num, count in counts.items():
         if count % 2 == 1:  # Odd count
             return num
+        

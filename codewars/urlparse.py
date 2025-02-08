@@ -13,3 +13,4 @@ def domain_name(url):
 
     # Extract only the main domain before the first dot
     return domain.split('.')[0]
+
